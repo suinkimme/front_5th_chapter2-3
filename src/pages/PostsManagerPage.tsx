@@ -99,6 +99,7 @@ const PostsManager = () => {
 
   // 게시물 추가
   const addPost = async () => {
+    console.log(newPost)
     try {
       const response = await fetch("/api/posts/add", {
         method: "POST",
@@ -218,6 +219,7 @@ const PostsManager = () => {
   // 댓글 추가
   const addComment = async () => {
     try {
+      console.log(newComment)
       const response = await fetch("/api/comments/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
