@@ -17,3 +17,28 @@ export interface IPost {
   views: number
   userId: number
 }
+
+export interface IPostWithAuthor extends IPost {
+  author: {
+    id: number
+    image: string
+    username: string
+  }
+}
+
+export interface IPostsResponse {
+  posts: IPost[]
+  total: number
+  skip: number
+  limit: number
+}
+
+export interface INewPost {
+  body: string
+  title: string
+  userId: number
+}
+
+export interface ISelectedPost extends INewPost {
+  id: number
+}

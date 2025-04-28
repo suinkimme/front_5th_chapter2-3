@@ -68,6 +68,8 @@ const PostsManager = () => {
           ...post,
           author: usersData.find((user) => user.id === post.userId),
         }))
+        console.log("original", postsData)
+        console.log(postsWithUsers)
         setPosts(postsWithUsers)
         setTotal(postsData.total)
       })
@@ -89,6 +91,7 @@ const PostsManager = () => {
     try {
       const response = await fetch(`/api/posts/search?q=${searchQuery}`)
       const data = await response.json()
+      console.log(data)
       setPosts(data.posts)
       setTotal(data.total)
     } catch (error) {
@@ -99,7 +102,6 @@ const PostsManager = () => {
 
   // 게시물 추가
   const addPost = async () => {
-    console.log(newPost)
     try {
       const response = await fetch("/api/posts/add", {
         method: "POST",
@@ -210,6 +212,7 @@ const PostsManager = () => {
     try {
       const response = await fetch(`/api/comments/post/${postId}`)
       const data = await response.json()
+      console.log(data)
       setComments((prev) => ({ ...prev, [postId]: data.comments }))
     } catch (error) {
       console.error("댓글 가져오기 오류:", error)
