@@ -2,20 +2,20 @@ export const ENDPOINTS = {
   POSTS: {
     GET: "/posts",
     CREATE: "/posts/add",
-    UPDATE: (postId: string) => `/posts/${postId}`,
-    DELETE: (postId: string) => `/posts/${postId}`,
+    UPDATE: (postId: number) => `/posts/${postId}`,
+    DELETE: (postId: number) => `/posts/${postId}`,
     GET_TAGS: "/posts/tags",
     GET_BY_TAG: (tag: string) => `/posts/tag/${tag}`,
   },
   COMMENTS: {
-    GET_BY_POST: (postId: string) => `/comments/post/${postId}`,
+    GET_BY_POST: (postId: number) => `/comments/post/${postId}`,
     CREATE: "/comments/add",
-    UPDATE: (commentId: string) => `/comments/${commentId}`,
-    DELETE: (commentId: string) => `/comments/${commentId}`,
-    LIKE: (commentId: string) => `/comments/${commentId}`,
+    UPDATE: (commentId: number) => `/comments/${commentId}`,
+    DELETE: (commentId: number) => `/comments/${commentId}`,
+    LIKE: (commentId: number) => `/comments/${commentId}`,
   },
   USERS: {
     GET: "/users",
-    GET_BY_ID: (userId: string) => `/users/${userId}`,
+    GET_BY_ID: (userId: number) => `/users/${userId}`,
   },
 }
