@@ -16,7 +16,7 @@ export const ENDPOINTS = {
     LIKE: (commentId: number) => `/comments/${commentId}`,
   },
   USERS: {
-    GET: "/users",
+    GET: "/users?limit=0&select=username,image",
     GET_BY_ID: (userId: number) => `/users/${userId}`,
   },
 }

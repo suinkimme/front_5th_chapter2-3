@@ -305,6 +305,7 @@ const PostsManager = () => {
     try {
       const response = await fetch(`/api/users/${user.id}`)
       const userData = await response.json()
+      console.log(userData)
       setSelectedUser(userData)
       setShowUserModal(true)
     } catch (error) {
