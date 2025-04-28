@@ -10,6 +10,13 @@ export const usePostsQuery = () => {
   })
 }
 
+export const useSearchPostsQuery = (searchQuery: string) => {
+  return useQuery({
+    queryKey: POST_QUERIES.search(searchQuery),
+    queryFn: () => postApi.searchPosts(searchQuery),
+  })
+}
+
 export const useCreatePostMutation = (post: INewPost) => {
   const queryClient = useQueryClient()
 

@@ -6,6 +6,7 @@ export const ENDPOINTS = {
     DELETE: (postId: number) => `/posts/${postId}`,
     GET_TAGS: "/posts/tags",
     GET_BY_TAG: (tag: string) => `/posts/tag/${tag}`,
+    SEARCH: (query: string) => `/posts/search?q=${query}`,
   },
   COMMENTS: {
     GET_BY_POST: (postId: number) => `/comments/post/${postId}`,
