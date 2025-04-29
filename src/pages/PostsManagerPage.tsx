@@ -25,6 +25,7 @@ import {
   TableRow,
   Textarea,
 } from "../shared/ui"
+import { PostTable } from "@/widgets/Post/ui"
 
 const PostsManager = () => {
   const navigate = useNavigate()
@@ -119,6 +120,7 @@ const PostsManager = () => {
 
   // 게시물 업데이트
   const updatePost = async () => {
+    console.log("게시물 업데이트", selectedPost)
     try {
       const response = await fetch(`/api/posts/${selectedPost.id}`, {
         method: "PUT",
@@ -212,7 +214,6 @@ const PostsManager = () => {
     try {
       const response = await fetch(`/api/comments/post/${postId}`)
       const data = await response.json()
-      console.log(data)
       setComments((prev) => ({ ...prev, [postId]: data.comments }))
     } catch (error) {
       console.error("댓글 가져오기 오류:", error)
@@ -222,7 +223,7 @@ const PostsManager = () => {
   // 댓글 추가
   const addComment = async () => {
     try {
-      console.log(newComment)
+      console.log(comments)
       const response = await fetch("/api/comments/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -242,6 +243,7 @@ const PostsManager = () => {
 
   // 댓글 업데이트
   const updateComment = async () => {
+    console.log("댓글 업데이트", selectedComment)
     try {
       const response = await fetch(`/api/comments/${selectedComment.id}`, {
         method: "PUT",
@@ -568,7 +570,13 @@ const PostsManager = () => {
           </div>
 
           {/* 게시물 테이블 */}
-          {loading ? <div className="flex justify-center p-4">로딩 중...</div> : renderPostTable()}
+          <PostTable />
+          {/* {renderPostTable()} */}
+
+          {/* =============================== */}
+          {/* 생각한거 글로 적어보기
+          post는 post만 관리하면된다? */}
+          {/* =============================== */}
 
           {/* 페이지네이션 */}
           <div className="flex justify-between items-center">

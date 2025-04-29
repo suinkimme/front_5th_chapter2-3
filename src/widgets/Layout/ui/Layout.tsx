@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
-import { Header } from "@/widgets/header/ui"
-import { Footer } from "@/widgets/footer/ui"
+import { Header } from "@/widgets/Header/ui"
+import { Footer } from "@/widgets/Footer/ui"
 
 const Layout = () => {
   return (

@@ -1,10 +1,10 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
-import { INewPost, ISelectedPost } from "@/entities/post/model/types"
+import { INewPost, ISelectedPost, IPostsResponse } from "@/entities/post/model/types"
 import { postApi } from "@/entities/post/api/postApi"
 import { POST_QUERIES } from "@/entities/post/model/constants"
 
 export const usePostsQuery = () => {
-  return useQuery({
+  return useQuery<IPostsResponse>({
     queryKey: POST_QUERIES.all,
     queryFn: postApi.getPosts,
   })
@@ -17,33 +17,33 @@ export const useSearchPostsQuery = (searchQuery: string) => {
   })
 }
 
-export const useCreatePostMutation = (post: INewPost) => {
+export const useCreatePostMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: () => postApi.createPost(post),
+    mutationFn: (post: INewPost) => postApi.createPost(post),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: POST_QUERIES.list() })
     },
   })
 }
 
-export const useUpdatePostMutation = (post: ISelectedPost) => {
+export const useUpdatePostMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: () => postApi.updatePost(post),
+    mutationFn: (post: ISelectedPost) => postApi.updatePost(post),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: POST_QUERIES.list() })
     },
   })
 }
 
-export const useDeletePostMutation = (id: number) => {
+export const useDeletePostMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: () => postApi.deletePost(id),
+    mutationFn: (id: number) => postApi.deletePost(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: POST_QUERIES.list() })
     },

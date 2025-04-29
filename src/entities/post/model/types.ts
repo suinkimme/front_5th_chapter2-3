@@ -12,14 +12,14 @@ export interface IPost {
   id: number
   title: string
   body: string
-  tags: ITag[]
+  tags: string[]
   reactions: IReactions
   views: number
   userId: number
 }
 
 export interface IPostWithAuthor extends IPost {
-  author: {
+  author?: {
     id: number
     image: string
     username: string

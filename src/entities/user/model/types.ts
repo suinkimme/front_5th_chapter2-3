@@ -68,3 +68,10 @@ export interface IUser {
   }
   role: string
 }
+
+export interface IUsersResponse {
+  users: IUser[]
+  total: number
+  skip: number
+  limit: number
+}
