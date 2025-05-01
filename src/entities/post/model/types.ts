@@ -4,8 +4,9 @@ export interface IReactions {
 }
 
 export interface ITag {
-  id: number
+  slug: string
   name: string
+  url: string
 }
 
 export interface IPost {

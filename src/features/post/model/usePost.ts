@@ -1,14 +1,16 @@
 import { useMemo } from "react"
-import { usePostsQuery, useSearchPostsQuery } from "@/entities/post/model/queries"
+import { usePostsQuery, useSearchPostsQuery, useTagsQuery, usePostsByTagQuery } from "@/entities/post/model/queries"
 import { useUsersQuery } from "@/entities/user/model/queries"
 import { usePostStore } from "@/features/post/model/store"
 import { enrichPostsWithAuthors } from "@/features/post/lib/mappers"
 
 export const usePost = () => {
+  const selectedTag = usePostStore((state) => state.selectedTag)
   const searchQuery = usePostStore((state) => state.searchQuery)
   const setSearchQuery = usePostStore((state) => state.setSearchQuery)
-
+  const setSelectedTag = usePostStore((state) => state.setSelectedTag)
   const { data: usersResponse } = useUsersQuery()
+  const { data: tags } = useTagsQuery()
 
   // 검색 X
   const {
@@ -28,15 +30,29 @@ export const usePost = () => {
     enabled: searchQuery.length >= 2,
   })
 
+  // 태그 선택
+  const {
+    data: tagPostsData,
+    isLoading: isTagLoading,
+    error: tagError,
+  } = usePostsByTagQuery(selectedTag, {
+    enabled: selectedTag !== "all" && selectedTag !== "",
+  })
+
   const posts = useMemo(() => {
     if (searchQuery.length >= 2) {
       return enrichPostsWithAuthors(searchPostsData, usersResponse)
     }
-    return enrichPostsWithAuthors(normalPostsData, usersResponse)
-  }, [normalPostsData, searchPostsData, searchQuery, usersResponse])
 
-  const isLoading = searchQuery.length >= 2 ? isSearchLoading : isNormalLoading
-  const error = searchQuery.length >= 2 ? searchError : normalError
+    if (selectedTag !== "all") {
+      return enrichPostsWithAuthors(tagPostsData, usersResponse)
+    }
+
+    return enrichPostsWithAuthors(normalPostsData, usersResponse)
+  }, [normalPostsData, searchPostsData, searchQuery, tagPostsData, usersResponse, selectedTag])
+
+  const isLoading = searchQuery.length >= 2 ? isSearchLoading : selectedTag !== "all" ? isTagLoading : isNormalLoading
+  const error = searchQuery.length >= 2 ? searchError : selectedTag !== "all" ? tagError : normalError
 
   return {
     // 상태
@@ -45,10 +61,12 @@ export const usePost = () => {
 
     // 데이터
     posts,
+    tags: tags || [],
+    selectedTag,
     searchQuery,
 
     // 액션
     setSearchQuery,
-    // searchPosts:
+    setSelectedTag,
   }
 }

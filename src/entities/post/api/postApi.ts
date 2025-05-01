@@ -1,6 +1,6 @@
 import { request } from "@/shared/api/base"
 import { ENDPOINTS } from "@/shared/api/endpoints"
-import { ISelectedPost, INewPost, IPostsResponse } from "@/entities/post/model/types"
+import { ISelectedPost, INewPost, IPostsResponse, ITag } from "@/entities/post/model/types"
 
 export const postApi = {
   getPosts: () => request<IPostsResponse>(ENDPOINTS.POSTS.GET),
@@ -9,6 +9,6 @@ export const postApi = {
   updatePost: (post: ISelectedPost) =>
     request(ENDPOINTS.POSTS.UPDATE(post.id), { method: "PUT", body: JSON.stringify(post) }),
   deletePost: (id: number) => request(ENDPOINTS.POSTS.DELETE(id)),
-  getTags: () => request(ENDPOINTS.POSTS.GET_TAGS),
-  getPostsByTag: (tag: string) => request(ENDPOINTS.POSTS.GET_BY_TAG(tag)),
+  getTags: () => request<ITag[]>(ENDPOINTS.POSTS.GET_TAGS),
+  getPostsByTag: (tag: string) => request<IPostsResponse>(ENDPOINTS.POSTS.GET_BY_TAG(tag)),
 }

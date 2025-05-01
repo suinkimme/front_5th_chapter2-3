@@ -527,7 +527,7 @@ const PostsManager = () => {
                 />
               </div>
             </div> */}
-            <Select
+            {/* <Select
               value={selectedTag}
               onValueChange={(value) => {
                 setSelectedTag(value)
@@ -546,7 +546,7 @@ const PostsManager = () => {
                   </SelectItem>
                 ))}
               </SelectContent>
-            </Select>
+            </Select> */}
             <Select value={sortBy} onValueChange={setSortBy}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="정렬 기준" />
