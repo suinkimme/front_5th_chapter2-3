@@ -5,6 +5,7 @@ import {
   PostSortOrderSelector,
   PostTable,
   PostListPagination,
+  PostDetailModal,
 } from "@/features/post/ui"
 import { UserModal } from "@/features/user/ui"
 
@@ -20,6 +21,7 @@ const PostManager = () => {
       <PostTable />
       <PostListPagination />
       <UserModal />
+      <PostDetailModal />
     </div>
   )
 }

@@ -12,6 +12,7 @@ export const usePost = () => {
   const sortOrder = usePostStore((state) => state.sortOrder)
   const selectedTag = usePostStore((state) => state.selectedTag)
   const searchQuery = usePostStore((state) => state.searchQuery)
+
   const setSearchQuery = usePostStore((state) => state.setSearchQuery)
   const setSelectedTag = usePostStore((state) => state.setSelectedTag)
   const setSortBy = usePostStore((state) => state.setSortBy)
@@ -19,6 +20,7 @@ export const usePost = () => {
   const setLimit = usePostStore((state) => state.setLimit)
   const setSkip = usePostStore((state) => state.setSkip)
   const setTotal = usePostStore((state) => state.setTotal)
+  const setSelectedPost = usePostStore((state) => state.setSelectedPost)
 
   const { data: usersResponse } = useUsersQuery()
   const { data: tags } = useTagsQuery()
@@ -99,5 +101,6 @@ export const usePost = () => {
     setLimit,
     setSkip,
     setTotal,
+    setSelectedPost,
   }
 }

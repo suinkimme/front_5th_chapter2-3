@@ -10,6 +10,7 @@ interface PostListState {
   limit: number
   skip: number
   total: number
+  selectedPost: IPostWithAuthor | null
 
   setPosts: (posts: IPostWithAuthor[]) => void
   setSearchQuery: (searchQuery: string) => void
@@ -19,6 +20,7 @@ interface PostListState {
   setLimit: (limit: number) => void
   setSkip: (skip: number) => void
   setTotal: (total: number) => void
+  setSelectedPost: (selectedPost: IPostWithAuthor | null) => void
 }
 
 export const usePostStore = create<PostListState>((set) => ({
@@ -30,6 +32,7 @@ export const usePostStore = create<PostListState>((set) => ({
   limit: 10,
   skip: 0,
   total: 0,
+  selectedPost: null,
 
   setPosts: (posts: IPostWithAuthor[]) => set({ posts }),
   setSearchQuery: (searchQuery: string) => set({ searchQuery }),
@@ -39,4 +42,17 @@ export const usePostStore = create<PostListState>((set) => ({
   setLimit: (limit: number) => set({ limit }),
   setSkip: (skip: number) => set({ skip }),
   setTotal: (total: number) => set({ total }),
+  setSelectedPost: (selectedPost: IPostWithAuthor | null) => set({ selectedPost }),
+}))
+
+interface PostModalState {
+  showPostModal: boolean
+
+  setShowPostModal: (show: boolean) => void
+}
+
+export const usePostModalStore = create<PostModalState>((set) => ({
+  showPostModal: false,
+
+  setShowPostModal: (show: boolean) => set({ showPostModal: show }),
 }))

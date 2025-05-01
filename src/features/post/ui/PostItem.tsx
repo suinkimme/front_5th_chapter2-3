@@ -7,9 +7,10 @@ interface IPostItemProps {
   post: IPostWithAuthor
   searchQuery: string
   handleUserClick: () => void
+  handlePostDetailClick: () => void
 }
 
-const PostItem = ({ post, searchQuery, handleUserClick }: IPostItemProps) => {
+const PostItem = ({ post, searchQuery, handleUserClick, handlePostDetailClick }: IPostItemProps) => {
   return (
     <TableRow>
       <TableCell>{post.id}</TableCell>
@@ -37,7 +38,7 @@ const PostItem = ({ post, searchQuery, handleUserClick }: IPostItemProps) => {
       </TableCell>
       <TableCell>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" onClick={() => {}}>
+          <Button variant="ghost" size="sm" onClick={handlePostDetailClick}>
             <MessageSquare className="w-4 h-4" />
           </Button>
           <Button variant="ghost" size="sm" onClick={() => {}}>

@@ -3,7 +3,7 @@ import { Table, Loading } from "@/shared/ui"
 import { PostList, PostTableHeader } from "@/features/post/ui"
 
 const PostTable = () => {
-  const { posts, isLoading, searchQuery } = usePost()
+  const { posts, isLoading } = usePost()
 
   if (isLoading) {
     return <Loading />
@@ -12,7 +12,7 @@ const PostTable = () => {
   return (
     <Table>
       <PostTableHeader />
-      <PostList posts={posts} searchQuery={searchQuery} />
+      <PostList posts={posts} />
     </Table>
   )
 }
