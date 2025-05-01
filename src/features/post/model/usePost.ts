@@ -2,9 +2,12 @@ import { useMemo, useEffect } from "react"
 import { usePostsQuery, useSearchPostsQuery, useTagsQuery, usePostsByTagQuery } from "@/entities/post/model/queries"
 import { useUsersQuery } from "@/entities/user/model/queries"
 import { usePostStore } from "@/features/post/model/store"
+import { useURLParams } from "@/shared/model/useURLParams"
 import { enrichPostsWithAuthors, sortPosts } from "@/features/post/lib/mappers"
 
 export const usePost = () => {
+  const { updateURL } = useURLParams()
+
   const limit = usePostStore((state) => state.limit)
   const skip = usePostStore((state) => state.skip)
   const total = usePostStore((state) => state.total)
@@ -76,6 +79,17 @@ export const usePost = () => {
       setTotal(normalPostsData.total)
     }
   }, [searchQuery, searchPostsData, selectedTag, tagPostsData, normalPostsData, setTotal])
+
+  useEffect(() => {
+    updateURL({
+      skip,
+      limit,
+      search: searchQuery,
+      sortBy,
+      sortOrder,
+      tag: selectedTag,
+    })
+  }, [skip, limit, searchQuery, sortBy, sortOrder, selectedTag])
 
   return {
     // 상태
