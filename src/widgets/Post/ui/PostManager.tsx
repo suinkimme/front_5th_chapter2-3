@@ -7,6 +7,7 @@ import {
   PostListPagination,
   PostDetailModal,
   PostCreateModal,
+  PostEditModal,
 } from "@/features/post/ui"
 import { UserModal } from "@/features/user/ui"
 import { CommentCreateModal, CommentEditModal } from "@/features/comment/ui"
@@ -24,6 +25,7 @@ const PostManager = () => {
       <PostListPagination />
       <UserModal />
       <PostCreateModal />
+      <PostEditModal />
       <PostDetailModal />
       <CommentCreateModal />
       <CommentEditModal />

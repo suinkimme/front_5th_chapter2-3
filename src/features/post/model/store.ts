@@ -68,3 +68,20 @@ export const usePostCreateModalStore = create<PostCreateModalState>((set) => ({
 
   setShowPostCreateModal: (show: boolean) => set({ showPostCreateModal: show }),
 }))
+
+interface PostEditModalState {
+  selectedPost: IPostWithAuthor | null
+
+  setSelectedPost: (selectedPost: IPostWithAuthor | null) => void
+  showPostEditModal: boolean
+
+  setShowPostEditModal: (show: boolean) => void
+}
+
+export const usePostEditModalStore = create<PostEditModalState>((set) => ({
+  selectedPost: null,
+  showPostEditModal: false,
+
+  setSelectedPost: (selectedPost: IPostWithAuthor | null) => set({ selectedPost }),
+  setShowPostEditModal: (show: boolean) => set({ showPostEditModal: show }),
+}))

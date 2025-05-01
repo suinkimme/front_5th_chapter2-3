@@ -8,9 +8,18 @@ interface IPostItemProps {
   searchQuery: string
   handleUserClick: () => void
   handlePostDetailClick: () => void
+  handlePostEditClick: () => void
+  handlePostDeleteClick: () => void
 }
 
-const PostItem = ({ post, searchQuery, handleUserClick, handlePostDetailClick }: IPostItemProps) => {
+const PostItem = ({
+  post,
+  searchQuery,
+  handleUserClick,
+  handlePostDetailClick,
+  handlePostEditClick,
+  handlePostDeleteClick,
+}: IPostItemProps) => {
   return (
     <TableRow>
       <TableCell>{post.id}</TableCell>
@@ -41,10 +50,10 @@ const PostItem = ({ post, searchQuery, handleUserClick, handlePostDetailClick }:
           <Button variant="ghost" size="sm" onClick={handlePostDetailClick}>
             <MessageSquare className="w-4 h-4" />
           </Button>
-          <Button variant="ghost" size="sm" onClick={() => {}}>
+          <Button variant="ghost" size="sm" onClick={handlePostEditClick}>
             <Edit2 className="w-4 h-4" />
           </Button>
-          <Button variant="ghost" size="sm" onClick={() => {}}>
+          <Button variant="ghost" size="sm" onClick={handlePostDeleteClick}>
             <Trash2 className="w-4 h-4" />
           </Button>
         </div>
