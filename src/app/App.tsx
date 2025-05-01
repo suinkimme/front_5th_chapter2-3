@@ -6,7 +6,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/front_5th_chapter2-3" element={<Layout />}>
           <Route index element={<PostsManagerPage />} />
         </Route>
       </Routes>

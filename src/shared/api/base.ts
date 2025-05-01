@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:5173/api"
+export const API_URL = "/front_5th_chapter2-3/api"
 
 export const request = async <T>(endpoint: string, options?: RequestInit): Promise<T> => {
   const defaultHeaders = {

@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams, useLocation } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 
 interface URLParams {
   skip?: number
@@ -11,7 +11,6 @@ interface URLParams {
 
 export const useURLParams = () => {
   const navigate = useNavigate()
-  const location = useLocation()
   const [searchParams] = useSearchParams()
 
   const updateURL = (params: URLParams) => {
@@ -21,8 +20,7 @@ export const useURLParams = () => {
         newParams.set(key, value.toString())
       }
     })
-    const path = location.pathname
-    const url = `${path}?${newParams.toString()}`
+    const url = `?${newParams.toString()}`
     navigate(url)
   }
 
