@@ -1,5 +1,3 @@
-import { IUser } from "@/entities/user/model/types"
-
 export interface IReactions {
   likes: number
   dislikes: number
@@ -22,7 +20,11 @@ export interface IPost {
 }
 
 export interface IPostWithAuthor extends IPost {
-  author: IUser
+  author?: {
+    id: number
+    image: string
+    username: string
+  }
 }
 
 export interface IPostsResponse {

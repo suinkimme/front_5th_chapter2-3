@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import { useMemo, useEffect } from "react"
 import { usePostsQuery, useSearchPostsQuery, useTagsQuery, usePostsByTagQuery } from "@/entities/post/model/queries"
 import { useUsersQuery } from "@/entities/user/model/queries"
 import { usePostStore } from "@/features/post/model/store"
@@ -64,6 +64,16 @@ export const usePost = () => {
 
   const isLoading = searchQuery.length >= 2 ? isSearchLoading : selectedTag !== "all" ? isTagLoading : isNormalLoading
   const error = searchQuery.length >= 2 ? searchError : selectedTag !== "all" ? tagError : normalError
+
+  useEffect(() => {
+    if (searchQuery.length >= 2 && searchPostsData?.total !== undefined) {
+      setTotal(searchPostsData.total)
+    } else if (selectedTag !== "all" && tagPostsData?.total !== undefined) {
+      setTotal(tagPostsData.total)
+    } else if (normalPostsData?.total !== undefined) {
+      setTotal(normalPostsData.total)
+    }
+  }, [searchQuery, searchPostsData, selectedTag, tagPostsData, normalPostsData, setTotal])
 
   return {
     // 상태
