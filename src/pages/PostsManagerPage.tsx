@@ -568,7 +568,7 @@ const PostsManager = () => {
       </Dialog>
 
       {/* 댓글 추가 대화상자 */}
-      <Dialog open={showAddCommentDialog} onOpenChange={setShowAddCommentDialog}>
+      {/* <Dialog open={showAddCommentDialog} onOpenChange={setShowAddCommentDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>새 댓글 추가</DialogTitle>
@@ -582,7 +582,7 @@ const PostsManager = () => {
             <Button onClick={addComment}>댓글 추가</Button>
           </div>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
 
       {/* 댓글 수정 대화상자 */}
       <Dialog open={showEditCommentDialog} onOpenChange={setShowEditCommentDialog}>
@@ -597,19 +597,6 @@ const PostsManager = () => {
               onChange={(e) => setSelectedComment({ ...selectedComment, body: e.target.value })}
             />
             <Button onClick={updateComment}>댓글 업데이트</Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* 게시물 상세 보기 대화상자 */}
-      <Dialog open={showPostDetailDialog} onOpenChange={setShowPostDetailDialog}>
-        <DialogContent className="max-w-3xl">
-          <DialogHeader>
-            <DialogTitle>{highlightText(selectedPost?.title, searchQuery)}</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <p>{highlightText(selectedPost?.body, searchQuery)}</p>
-            {renderComments(selectedPost?.id)}
           </div>
         </DialogContent>
       </Dialog>

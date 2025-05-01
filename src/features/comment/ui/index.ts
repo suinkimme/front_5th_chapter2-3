@@ -1,0 +1,5 @@
+export { default as Comment } from "./Comment"
+export { default as CommentTitle } from "./CommentTitle"
+export { default as CommentList } from "./CommentList"
+export { default as CommentItem } from "./CommentItem"
+export { default as CommentCreateModal } from "./CommentCreateModal"

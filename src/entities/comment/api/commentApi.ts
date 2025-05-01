@@ -1,9 +1,9 @@
 import { request } from "@/shared/api/base"
 import { ENDPOINTS } from "@/shared/api/endpoints"
-import { IComment, INewComment } from "@/entities/comment/model/types"
+import { IComment, INewComment, ICommentResponse } from "@/entities/comment/model/types"
 
 export const commentApi = {
-  getCommentsByPostId: (postId: number) => request(ENDPOINTS.COMMENTS.GET_BY_POST(postId)),
+  getCommentsByPostId: (postId: number) => request<ICommentResponse>(ENDPOINTS.COMMENTS.GET_BY_POST(postId)),
   createComment: (comment: INewComment) =>
     request(ENDPOINTS.COMMENTS.CREATE, { method: "POST", body: JSON.stringify(comment) }),
   updateComment: (comment: IComment) =>

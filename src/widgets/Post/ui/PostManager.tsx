@@ -8,6 +8,7 @@ import {
   PostDetailModal,
 } from "@/features/post/ui"
 import { UserModal } from "@/features/user/ui"
+import { CommentCreateModal } from "@/features/comment/ui"
 
 const PostManager = () => {
   return (
@@ -22,6 +23,7 @@ const PostManager = () => {
       <PostListPagination />
       <UserModal />
       <PostDetailModal />
+      <CommentCreateModal />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { usePostModal } from "@/features/post/model/usePostModal"
 import { usePostStore } from "@/features/post/model/store"
+import { Comment } from "@/features/comment/ui"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, HighlightText } from "@/shared/ui"
 
 const PostDetailModal = () => {
@@ -19,7 +20,7 @@ const PostDetailModal = () => {
             <p>
               <HighlightText text={selectedPost.body} highlight={searchQuery} />
             </p>
-            {/* {renderComments(selectedPost?.id)} */}
+            <Comment />
           </div>
         </DialogContent>
       </Dialog>
