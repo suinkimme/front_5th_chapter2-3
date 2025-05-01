@@ -26,6 +26,7 @@ import {
   Textarea,
 } from "../shared/ui"
 import { PostManager } from "@/widgets/Post/ui"
+import { PostManagerTitle } from "@/features/post/ui"
 
 const PostsManager = () => {
   const navigate = useNavigate()
@@ -502,7 +503,7 @@ const PostsManager = () => {
 
   return (
     <Card className="w-full max-w-6xl mx-auto">
-      <CardHeader>
+      {/* <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <span>게시물 관리자</span>
           <Button onClick={() => setShowAddDialog(true)}>
@@ -510,13 +511,14 @@ const PostsManager = () => {
             게시물 추가
           </Button>
         </CardTitle>
-      </CardHeader>
+      </CardHeader> */}
+      <PostManagerTitle />
       <CardContent>
         <PostManager />
       </CardContent>
 
       {/* 게시물 추가 대화상자 */}
-      <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
+      {/* <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>새 게시물 추가</DialogTitle>
@@ -542,7 +544,7 @@ const PostsManager = () => {
             <Button onClick={addPost}>게시물 추가</Button>
           </div>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
 
       {/* 게시물 수정 대화상자 */}
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>

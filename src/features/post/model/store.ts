@@ -56,3 +56,15 @@ export const usePostModalStore = create<PostModalState>((set) => ({
 
   setShowPostModal: (show: boolean) => set({ showPostModal: show }),
 }))
+
+interface PostCreateModalState {
+  showPostCreateModal: boolean
+
+  setShowPostCreateModal: (show: boolean) => void
+}
+
+export const usePostCreateModalStore = create<PostCreateModalState>((set) => ({
+  showPostCreateModal: false,
+
+  setShowPostCreateModal: (show: boolean) => set({ showPostCreateModal: show }),
+}))
