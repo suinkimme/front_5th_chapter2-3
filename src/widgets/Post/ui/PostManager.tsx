@@ -1,4 +1,10 @@
-import { PostSearchForm, PostTagSelector, PostSortBySelector, PostTable } from "@/features/post/ui"
+import {
+  PostSearchForm,
+  PostTagSelector,
+  PostSortBySelector,
+  PostSortOrderSelector,
+  PostTable,
+} from "@/features/post/ui"
 
 const PostManager = () => {
   return (
@@ -7,6 +13,7 @@ const PostManager = () => {
         <PostSearchForm />
         <PostTagSelector />
         <PostSortBySelector />
+        <PostSortOrderSelector />
       </div>
       <PostTable />
     </div>
