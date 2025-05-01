@@ -3,10 +3,10 @@ import { INewPost, ISelectedPost, IPostsResponse, ITag } from "@/entities/post/m
 import { postApi } from "@/entities/post/api/postApi"
 import { POST_QUERIES } from "@/entities/post/model/constants"
 
-export const usePostsQuery = (options = {}) => {
+export const usePostsQuery = (limit: number, skip: number, options = {}) => {
   return useQuery<IPostsResponse>({
-    queryKey: POST_QUERIES.all,
-    queryFn: postApi.getPosts,
+    queryKey: [POST_QUERIES.all, limit, skip],
+    queryFn: () => postApi.getPosts(limit, skip),
     ...options,
   })
 }

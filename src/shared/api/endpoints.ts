@@ -1,6 +1,6 @@
 export const ENDPOINTS = {
   POSTS: {
-    GET: "/posts",
+    GET: (limit: number, skip: number) => `/posts?limit=${limit}&skip=${skip}`,
     CREATE: "/posts/add",
     UPDATE: (postId: number) => `/posts/${postId}`,
     DELETE: (postId: number) => `/posts/${postId}`,

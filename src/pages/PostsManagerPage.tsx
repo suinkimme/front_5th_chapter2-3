@@ -516,7 +516,7 @@ const PostsManager = () => {
           <PostManager />
 
           {/* 페이지네이션 */}
-          <div className="flex justify-between items-center">
+          {/* <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
               <span>표시</span>
               <Select value={limit.toString()} onValueChange={(value) => setLimit(Number(value))}>
@@ -539,7 +539,7 @@ const PostsManager = () => {
                 다음
               </Button>
             </div>
-          </div>
+          </div> */}
         </div>
       </CardContent>
 

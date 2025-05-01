@@ -7,3 +7,4 @@ export { default as PostTableHeader } from "../../../features/post/ui/PostTableH
 export { default as PostTagSelector } from "./PostTagSelector"
 export { default as PostSortBySelector } from "./PostSortBySelector"
 export { default as PostSortOrderSelector } from "./PostSortOrderSelector"
+export { default as PostListPagination } from "./PostListPagination"

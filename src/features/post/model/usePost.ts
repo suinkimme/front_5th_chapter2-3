@@ -5,6 +5,9 @@ import { usePostStore } from "@/features/post/model/store"
 import { enrichPostsWithAuthors, sortPosts } from "@/features/post/lib/mappers"
 
 export const usePost = () => {
+  const limit = usePostStore((state) => state.limit)
+  const skip = usePostStore((state) => state.skip)
+  const total = usePostStore((state) => state.total)
   const sortBy = usePostStore((state) => state.sortBy)
   const sortOrder = usePostStore((state) => state.sortOrder)
   const selectedTag = usePostStore((state) => state.selectedTag)
@@ -13,6 +16,9 @@ export const usePost = () => {
   const setSelectedTag = usePostStore((state) => state.setSelectedTag)
   const setSortBy = usePostStore((state) => state.setSortBy)
   const setSortOrder = usePostStore((state) => state.setSortOrder)
+  const setLimit = usePostStore((state) => state.setLimit)
+  const setSkip = usePostStore((state) => state.setSkip)
+  const setTotal = usePostStore((state) => state.setTotal)
 
   const { data: usersResponse } = useUsersQuery()
   const { data: tags } = useTagsQuery()
@@ -22,7 +28,7 @@ export const usePost = () => {
     data: normalPostsData,
     isLoading: isNormalLoading,
     error: normalError,
-  } = usePostsQuery({
+  } = usePostsQuery(limit, skip, {
     enabled: !searchQuery,
   })
 
@@ -71,11 +77,17 @@ export const usePost = () => {
     searchQuery,
     sortBy,
     sortOrder,
+    limit,
+    skip,
+    total,
 
     // 액션
     setSearchQuery,
     setSelectedTag,
     setSortBy,
     setSortOrder,
+    setLimit,
+    setSkip,
+    setTotal,
   }
 }

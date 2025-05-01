@@ -4,6 +4,7 @@ import {
   PostSortBySelector,
   PostSortOrderSelector,
   PostTable,
+  PostListPagination,
 } from "@/features/post/ui"
 
 const PostManager = () => {
@@ -16,6 +17,7 @@ const PostManager = () => {
         <PostSortOrderSelector />
       </div>
       <PostTable />
+      <PostListPagination />
     </div>
   )
 }
