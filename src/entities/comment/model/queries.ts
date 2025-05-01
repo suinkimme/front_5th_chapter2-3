@@ -32,24 +32,24 @@ export const useUpdateCommentMutation = () => {
   })
 }
 
-export const useDeleteCommentMutation = (commentId: number) => {
+export const useDeleteCommentMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: () => commentApi.deleteComment(commentId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: COMMENT_QUERIES.byPostId(commentId) })
+    mutationFn: (commentId: number) => commentApi.deleteComment(commentId),
+    onSuccess: (data, postId) => {
+      queryClient.invalidateQueries({ queryKey: COMMENT_QUERIES.byPostId(postId) })
     },
   })
 }
 
-export const useLikeCommentMutation = (commentId: number) => {
+export const useLikeCommentMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: () => commentApi.likeComment(commentId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: COMMENT_QUERIES.byPostId(commentId) })
+    mutationFn: (commentId: number) => commentApi.likeComment(commentId),
+    onSuccess: (data, postId) => {
+      queryClient.invalidateQueries({ queryKey: COMMENT_QUERIES.byPostId(postId) })
     },
   })
 }

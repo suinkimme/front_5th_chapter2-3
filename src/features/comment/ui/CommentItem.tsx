@@ -3,7 +3,7 @@ import { ThumbsUp, Edit2, Trash2 } from "lucide-react"
 import { Button, HighlightText } from "@/shared/ui"
 import { IComment } from "@/entities/comment/model/types"
 import { useCommentStore } from "@/features/comment/model/store"
-
+import { useDeleteCommentMutation, useLikeCommentMutation } from "@/entities/comment/model/queries"
 interface ICommentItemProps {
   comment: IComment
   postId: number
@@ -12,6 +12,8 @@ interface ICommentItemProps {
 const CommentItem = ({ comment, postId }: ICommentItemProps) => {
   const { searchQuery } = usePostStore()
   const { setSelectedComment, setShowEditCommentDialog } = useCommentStore()
+  const likeComment = useLikeCommentMutation()
+  const deleteComment = useDeleteCommentMutation()
 
   return (
     <div key={comment.id} className="flex items-center justify-between text-sm border-b pb-1">
@@ -22,7 +24,7 @@ const CommentItem = ({ comment, postId }: ICommentItemProps) => {
         </span>
       </div>
       <div className="flex items-center space-x-1">
-        <Button variant="ghost" size="sm" onClick={() => {}}>
+        <Button variant="ghost" size="sm" onClick={() => likeComment.mutate(comment.id)}>
           <ThumbsUp className="w-3 h-3" />
           <span className="ml-1 text-xs">{comment.likes}</span>
         </Button>
@@ -36,7 +38,7 @@ const CommentItem = ({ comment, postId }: ICommentItemProps) => {
         >
           <Edit2 className="w-3 h-3" />
         </Button>
-        <Button variant="ghost" size="sm" onClick={() => {}}>
+        <Button variant="ghost" size="sm" onClick={() => deleteComment.mutate(comment.id)}>
           <Trash2 className="w-3 h-3" />
         </Button>
       </div>
