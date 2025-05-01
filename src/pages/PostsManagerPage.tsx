@@ -25,7 +25,7 @@ import {
   TableRow,
   Textarea,
 } from "../shared/ui"
-import { PostTable } from "@/widgets/Post/ui"
+import { PostManager } from "@/widgets/Post/ui"
 
 const PostsManager = () => {
   const navigate = useNavigate()
@@ -515,7 +515,7 @@ const PostsManager = () => {
         <div className="flex flex-col gap-4">
           {/* 검색 및 필터 컨트롤 */}
           <div className="flex gap-4">
-            <div className="flex-1">
+            {/* <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -526,7 +526,7 @@ const PostsManager = () => {
                   onKeyPress={(e) => e.key === "Enter" && searchPosts()}
                 />
               </div>
-            </div>
+            </div> */}
             <Select
               value={selectedTag}
               onValueChange={(value) => {
@@ -570,7 +570,7 @@ const PostsManager = () => {
           </div>
 
           {/* 게시물 테이블 */}
-          <PostTable />
+          <PostManager />
           {/* {renderPostTable()} */}
 
           {/* =============================== */}

@@ -4,7 +4,7 @@ import { ISelectedPost, INewPost, IPostsResponse } from "@/entities/post/model/t
 
 export const postApi = {
   getPosts: () => request<IPostsResponse>(ENDPOINTS.POSTS.GET),
-  searchPosts: (query: string) => request(ENDPOINTS.POSTS.SEARCH(query)),
+  searchPosts: (query: string) => request<IPostsResponse>(ENDPOINTS.POSTS.SEARCH(query)),
   createPost: (post: INewPost) => request(ENDPOINTS.POSTS.CREATE, { method: "POST", body: JSON.stringify(post) }),
   updatePost: (post: ISelectedPost) =>
     request(ENDPOINTS.POSTS.UPDATE(post.id), { method: "PUT", body: JSON.stringify(post) }),

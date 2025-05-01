@@ -1,4 +1,4 @@
-import { PostItem } from "@/widgets/Post/ui"
+import { PostItem } from "@/features/post/ui"
 import { TableBody } from "@/shared/ui"
 import { IPostWithAuthor } from "@/entities/post/model/types"
 

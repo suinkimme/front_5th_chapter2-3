@@ -1,25 +1,42 @@
 import { useMemo } from "react"
-import { useEffect } from "react"
-import { usePostsQuery } from "@/entities/post/model/queries"
+import { usePostsQuery, useSearchPostsQuery } from "@/entities/post/model/queries"
 import { useUsersQuery } from "@/entities/user/model/queries"
 import { usePostStore } from "@/features/post/model/store"
 import { enrichPostsWithAuthors } from "@/features/post/lib/mappers"
 
 export const usePost = () => {
-  const { data, isLoading, error } = usePostsQuery()
-  const { data: usersResponse } = useUsersQuery()
-
-  // zustand 접근
-  const posts = useMemo(() => enrichPostsWithAuthors(data, usersResponse), [data, usersResponse])
-  const setPosts = usePostStore((state) => state.setPosts)
   const searchQuery = usePostStore((state) => state.searchQuery)
   const setSearchQuery = usePostStore((state) => state.setSearchQuery)
 
-  useEffect(() => {
-    if (data && !isLoading) {
-      setPosts(data.posts)
+  const { data: usersResponse } = useUsersQuery()
+
+  // 검색 X
+  const {
+    data: normalPostsData,
+    isLoading: isNormalLoading,
+    error: normalError,
+  } = usePostsQuery({
+    enabled: !searchQuery,
+  })
+
+  // 검색 O
+  const {
+    data: searchPostsData,
+    isLoading: isSearchLoading,
+    error: searchError,
+  } = useSearchPostsQuery(searchQuery, {
+    enabled: searchQuery.length >= 2,
+  })
+
+  const posts = useMemo(() => {
+    if (searchQuery.length >= 2) {
+      return enrichPostsWithAuthors(searchPostsData, usersResponse)
     }
-  }, [data, isLoading, setPosts])
+    return enrichPostsWithAuthors(normalPostsData, usersResponse)
+  }, [normalPostsData, searchPostsData, searchQuery, usersResponse])
+
+  const isLoading = searchQuery.length >= 2 ? isSearchLoading : isNormalLoading
+  const error = searchQuery.length >= 2 ? searchError : normalError
 
   return {
     // 상태
@@ -29,5 +46,9 @@ export const usePost = () => {
     // 데이터
     posts,
     searchQuery,
+
+    // 액션
+    setSearchQuery,
+    // searchPosts:
   }
 }

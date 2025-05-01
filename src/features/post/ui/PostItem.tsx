@@ -1,5 +1,5 @@
 import { ThumbsUp, ThumbsDown, MessageSquare, Edit2, Trash2 } from "lucide-react"
-import { PostTagList } from "@/widgets/Post/ui"
+import { PostTagList } from "@/features/post/ui"
 import { TableRow, TableCell, HighlightText, Button } from "@/shared/ui"
 import { IPostWithAuthor } from "@/entities/post/model/types"
 

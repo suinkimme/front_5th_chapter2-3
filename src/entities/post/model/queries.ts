@@ -3,17 +3,21 @@ import { INewPost, ISelectedPost, IPostsResponse } from "@/entities/post/model/t
 import { postApi } from "@/entities/post/api/postApi"
 import { POST_QUERIES } from "@/entities/post/model/constants"
 
-export const usePostsQuery = () => {
+export const usePostsQuery = (options = {}) => {
   return useQuery<IPostsResponse>({
     queryKey: POST_QUERIES.all,
     queryFn: postApi.getPosts,
+    ...options,
   })
 }
 
-export const useSearchPostsQuery = (searchQuery: string) => {
-  return useQuery({
+export const useSearchPostsQuery = (searchQuery: string, options = {}) => {
+  return useQuery<IPostsResponse>({
     queryKey: POST_QUERIES.search(searchQuery),
     queryFn: () => postApi.searchPosts(searchQuery),
+    enabled: searchQuery.trim().length >= 2 && (options as { enabled?: boolean }).enabled !== false,
+    staleTime: 30000,
+    ...options,
   })
 }
 

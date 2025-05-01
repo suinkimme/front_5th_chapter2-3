@@ -1,5 +1,1 @@
-export { default as PostTable } from "./PostTable"
-export { default as PostItem } from "./PostItem"
-export { default as PostList } from "./PostList"
-export { default as PostTagList } from "./PostTagList"
-export { default as PostTableHeader } from "./PostTableHeader"
+export { default as PostManager } from "./PostManager"
