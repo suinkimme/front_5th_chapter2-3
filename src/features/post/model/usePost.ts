@@ -2,13 +2,18 @@ import { useMemo } from "react"
 import { usePostsQuery, useSearchPostsQuery, useTagsQuery, usePostsByTagQuery } from "@/entities/post/model/queries"
 import { useUsersQuery } from "@/entities/user/model/queries"
 import { usePostStore } from "@/features/post/model/store"
-import { enrichPostsWithAuthors } from "@/features/post/lib/mappers"
+import { enrichPostsWithAuthors, sortPosts } from "@/features/post/lib/mappers"
 
 export const usePost = () => {
+  const sortBy = usePostStore((state) => state.sortBy)
+  const sortOrder = usePostStore((state) => state.sortOrder)
   const selectedTag = usePostStore((state) => state.selectedTag)
   const searchQuery = usePostStore((state) => state.searchQuery)
   const setSearchQuery = usePostStore((state) => state.setSearchQuery)
   const setSelectedTag = usePostStore((state) => state.setSelectedTag)
+  const setSortBy = usePostStore((state) => state.setSortBy)
+  const setSortOrder = usePostStore((state) => state.setSortOrder)
+
   const { data: usersResponse } = useUsersQuery()
   const { data: tags } = useTagsQuery()
 
@@ -60,13 +65,17 @@ export const usePost = () => {
     error,
 
     // 데이터
-    posts,
+    posts: sortPosts(posts, sortBy, sortOrder),
     tags: tags || [],
     selectedTag,
     searchQuery,
+    sortBy,
+    sortOrder,
 
     // 액션
     setSearchQuery,
     setSelectedTag,
+    setSortBy,
+    setSortOrder,
   }
 }

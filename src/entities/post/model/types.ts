@@ -43,3 +43,6 @@ export interface INewPost {
 export interface ISelectedPost extends INewPost {
   id: number
 }
+
+export type SortBy = "id" | "title" | "views" | "userId" | "author" | "none"
+export type SortOrder = "asc" | "desc"

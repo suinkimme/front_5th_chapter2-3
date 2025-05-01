@@ -1,4 +1,4 @@
-import { PostSearchForm, PostTagSelector, PostTable } from "@/features/post/ui"
+import { PostSearchForm, PostTagSelector, PostSortBySelector, PostTable } from "@/features/post/ui"
 
 const PostManager = () => {
   return (
@@ -6,6 +6,7 @@ const PostManager = () => {
       <div className="flex gap-4">
         <PostSearchForm />
         <PostTagSelector />
+        <PostSortBySelector />
       </div>
       <PostTable />
     </div>

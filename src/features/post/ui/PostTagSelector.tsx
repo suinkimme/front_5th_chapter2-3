@@ -9,7 +9,6 @@ const PostTagSelector = () => {
       value={selectedTag}
       onValueChange={(value) => {
         setSelectedTag(value)
-        // fetchPostsByTag(value)
         // updateURL()
       }}
     >
