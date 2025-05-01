@@ -15,7 +15,7 @@ export const useCreateCommentMutation = () => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (comment: INewComment) => commentApi.createComment(comment),
-    onSuccess: (data, variables) => {
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: COMMENT_QUERIES.byPostId(variables.postId) })
     },
   })
@@ -26,7 +26,7 @@ export const useUpdateCommentMutation = () => {
 
   return useMutation({
     mutationFn: (comment: IComment) => commentApi.updateComment(comment),
-    onSuccess: (data, variables) => {
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: COMMENT_QUERIES.byPostId(variables.postId) })
     },
   })
@@ -37,7 +37,7 @@ export const useDeleteCommentMutation = () => {
 
   return useMutation({
     mutationFn: (commentId: number) => commentApi.deleteComment(commentId),
-    onSuccess: (data, postId) => {
+    onSuccess: (_, postId) => {
       queryClient.invalidateQueries({ queryKey: COMMENT_QUERIES.byPostId(postId) })
     },
   })
@@ -48,7 +48,7 @@ export const useLikeCommentMutation = () => {
 
   return useMutation({
     mutationFn: (commentId: number) => commentApi.likeComment(commentId),
-    onSuccess: (data, postId) => {
+    onSuccess: (_, postId) => {
       queryClient.invalidateQueries({ queryKey: COMMENT_QUERIES.byPostId(postId) })
     },
   })

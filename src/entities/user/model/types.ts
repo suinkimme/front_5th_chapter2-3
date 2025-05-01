@@ -75,3 +75,9 @@ export interface IUsersResponse {
   skip: number
   limit: number
 }
+
+export interface IPostUser {
+  id: number
+  image: string
+  username: string
+}

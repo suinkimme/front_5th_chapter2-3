@@ -1,11 +1,11 @@
 import { create } from "zustand"
-import { IUser } from "@/entities/user/model/types"
+import { IPostUser } from "@/entities/user/model/types"
 
 interface UserState {
   showUserModal: boolean
-  selectedUser: IUser | null
+  selectedUser: IPostUser | null
 
-  setSelectedUser: (user: IUser) => void
+  setSelectedUser: (user: IPostUser) => void
   setShowUserModal: (show: boolean) => void
 }
 
@@ -13,6 +13,6 @@ export const useUserStore = create<UserState>((set) => ({
   showUserModal: false,
   selectedUser: null,
 
-  setSelectedUser: (user: IUser) => set({ selectedUser: user }),
+  setSelectedUser: (user: IPostUser) => set({ selectedUser: user }),
   setShowUserModal: (show: boolean) => set({ showUserModal: show }),
 }))

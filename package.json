@@ -1,11 +1,13 @@
 {
-  "name": "front-end-2-3",
+  "homepage": "https://suinkimme.github.io/front_5th_chapter2-3/",
+  "name": "front-5th-chapter2-3",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "deploy": "pnpm run build && gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
@@ -37,6 +39,7 @@
     "jsdom": "^26.1.0",
     "lucide-react": "^0.503.0",
     "msw": "^2.7.5",
+    "gh-pages": "^6.3.0",
     "prettier": "^3.5.3",
     "react-router-dom": "^7.5.2",
     "typescript": "~5.8.3",

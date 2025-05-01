@@ -25,8 +25,10 @@ const PostList = ({ posts }: IPostListProps) => {
           post={post}
           searchQuery={searchQuery}
           handleUserClick={() => {
-            setSelectedUser(post.author)
-            setShowUserModal(!showUserModal)
+            if (post.author) {
+              setSelectedUser(post.author)
+              setShowUserModal(!showUserModal)
+            }
           }}
           handlePostDetailClick={() => {
             setSelectedPost(post)

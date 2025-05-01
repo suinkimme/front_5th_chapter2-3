@@ -9,7 +9,7 @@ interface ICommentItemProps {
   postId: number
 }
 
-const CommentItem = ({ comment, postId }: ICommentItemProps) => {
+const CommentItem = ({ comment }: ICommentItemProps) => {
   const { searchQuery } = usePostStore()
   const { setSelectedComment, setShowEditCommentDialog } = useCommentStore()
   const likeComment = useLikeCommentMutation()
