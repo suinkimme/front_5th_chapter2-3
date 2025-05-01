@@ -8,7 +8,7 @@ import {
   PostDetailModal,
 } from "@/features/post/ui"
 import { UserModal } from "@/features/user/ui"
-import { CommentCreateModal } from "@/features/comment/ui"
+import { CommentCreateModal, CommentEditModal } from "@/features/comment/ui"
 
 const PostManager = () => {
   return (
@@ -24,6 +24,7 @@ const PostManager = () => {
       <UserModal />
       <PostDetailModal />
       <CommentCreateModal />
+      <CommentEditModal />
     </div>
   )
 }

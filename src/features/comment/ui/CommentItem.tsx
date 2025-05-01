@@ -2,6 +2,8 @@ import { usePostStore } from "@/features/post/model/store"
 import { ThumbsUp, Edit2, Trash2 } from "lucide-react"
 import { Button, HighlightText } from "@/shared/ui"
 import { IComment } from "@/entities/comment/model/types"
+import { useCommentStore } from "@/features/comment/model/store"
+
 interface ICommentItemProps {
   comment: IComment
   postId: number
@@ -9,6 +11,7 @@ interface ICommentItemProps {
 
 const CommentItem = ({ comment, postId }: ICommentItemProps) => {
   const { searchQuery } = usePostStore()
+  const { setSelectedComment, setShowEditCommentDialog } = useCommentStore()
 
   return (
     <div key={comment.id} className="flex items-center justify-between text-sm border-b pb-1">
@@ -27,8 +30,8 @@ const CommentItem = ({ comment, postId }: ICommentItemProps) => {
           variant="ghost"
           size="sm"
           onClick={() => {
-            // setSelectedComment(comment)
-            // setShowEditCommentDialog(true)
+            setSelectedComment(comment)
+            setShowEditCommentDialog(true)
           }}
         >
           <Edit2 className="w-3 h-3" />

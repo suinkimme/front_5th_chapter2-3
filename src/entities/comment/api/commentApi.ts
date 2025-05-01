@@ -7,7 +7,7 @@ export const commentApi = {
   createComment: (comment: INewComment) =>
     request(ENDPOINTS.COMMENTS.CREATE, { method: "POST", body: JSON.stringify(comment) }),
   updateComment: (comment: IComment) =>
-    request(ENDPOINTS.COMMENTS.UPDATE(comment.id), { method: "PUT", body: JSON.stringify(comment) }),
+    request(ENDPOINTS.COMMENTS.UPDATE(comment.id), { method: "PUT", body: JSON.stringify({ body: comment.body }) }),
   deleteComment: (commentId: number) => request(ENDPOINTS.COMMENTS.DELETE(commentId)),
   likeComment: (commentId: number) => request(ENDPOINTS.COMMENTS.LIKE(commentId)),
 }
