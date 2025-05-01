@@ -6,9 +6,10 @@ import { IPostWithAuthor } from "@/entities/post/model/types"
 interface IPostItemProps {
   post: IPostWithAuthor
   searchQuery: string
+  handleUserClick: () => void
 }
 
-const PostItem = ({ post, searchQuery }: IPostItemProps) => {
+const PostItem = ({ post, searchQuery, handleUserClick }: IPostItemProps) => {
   return (
     <TableRow>
       <TableCell>{post.id}</TableCell>
@@ -21,7 +22,7 @@ const PostItem = ({ post, searchQuery }: IPostItemProps) => {
         </div>
       </TableCell>
       <TableCell>
-        <div className="flex items-center space-x-2 cursor-pointer" onClick={() => {}}>
+        <div className="flex items-center space-x-2 cursor-pointer" onClick={handleUserClick}>
           <img src={post.author?.image} alt={post.author?.username} className="w-8 h-8 rounded-full" />
           <span>{post.author?.username}</span>
         </div>

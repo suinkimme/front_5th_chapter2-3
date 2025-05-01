@@ -6,10 +6,11 @@ import {
   PostTable,
   PostListPagination,
 } from "@/features/post/ui"
+import { UserModal } from "@/features/user/ui"
 
 const PostManager = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <div className="flex gap-4">
         <PostSearchForm />
         <PostTagSelector />
@@ -18,6 +19,7 @@ const PostManager = () => {
       </div>
       <PostTable />
       <PostListPagination />
+      <UserModal />
     </div>
   )
 }

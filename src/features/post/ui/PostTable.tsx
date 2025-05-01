@@ -5,10 +5,14 @@ import { PostList, PostTableHeader } from "@/features/post/ui"
 const PostTable = () => {
   const { posts, isLoading, searchQuery } = usePost()
 
+  if (isLoading) {
+    return <Loading />
+  }
+
   return (
     <Table>
       <PostTableHeader />
-      {isLoading ? <Loading /> : <PostList posts={posts} searchQuery={searchQuery} />}
+      <PostList posts={posts} searchQuery={searchQuery} />
     </Table>
   )
 }
